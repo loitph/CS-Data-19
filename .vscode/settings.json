@@ -1,9 +1,12 @@
 {
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.wordWrap": "wordWrapColumn",
   "editor.wordWrapColumn": 60,
-  "editor.rulers": [60],
+  "editor.rulers": [
+    60
+  ],
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true,
