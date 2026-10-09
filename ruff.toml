@@ -1,0 +1,15 @@
+line-length = 60
+indent-width = 2          # 2-space indent
+
+[format]
+indent-style = "space"
+quote-style = "single"    # 'yoooo' rather than "yoooo"
+
+[lint]
+select = [
+  "E", "W",   # pycodestyle: whitespace, indentation, line length
+  "F",        # pyflakes: unused imports/variables, undefined names
+  "N",        # pep8-naming: function/variable naming style
+  "I",        # import sorting
+]
+ignore = ["E111", "E114"]  # these expect 4-space indent; drop them since you use 2
