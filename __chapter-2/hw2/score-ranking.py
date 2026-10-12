@@ -21,4 +21,6 @@ while True:
     calculate_average(s)
 
   if score < 0:
+    print('Exiting...')
+    print('Goodbye!')
     break
