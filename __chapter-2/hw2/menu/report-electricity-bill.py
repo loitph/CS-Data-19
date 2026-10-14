@@ -19,7 +19,6 @@ class People:
     return self.__to_row__()
 
 
-# Messages
 menu_title = "\n--- Menu ---"
 opt_1_info = "1. Enter the customer's name, kWh used, usage allowance, total amount"
 opt_2_report = "2. Print the report"
