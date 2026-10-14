@@ -1,7 +1,7 @@
 import os
 import re
 from decimal import Decimal, InvalidOperation
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
 
 class People:
   def __init__(self, name: str, kWh: Decimal, total: Decimal):
@@ -14,6 +14,9 @@ class People:
 
   def __to_row__(self) -> list[str | Decimal]:
     return [self.name, self.kWh, self.total]
+
+  def get_row(self) -> list[str | Decimal]:
+    return self.__to_row__()
 
 
 # Messages
@@ -108,27 +111,32 @@ def calc_total(kWh: Decimal) -> Decimal:
 def save_to_excel() -> None:
   excel_file = 'report-electricity-bill.xlsx'
 
-  workbook = Workbook()
-  worksheet = workbook.active
+  if not lst_ppl:
+    print('No new data to save.')
+    return
 
-  worksheet.title = 'Electricity Bill Report'
+  if os.path.exists(excel_file):
+    workbook = load_workbook(excel_file)
+    worksheet = workbook.active
+  else:
+    workbook = Workbook()
+    worksheet = workbook.active
+    worksheet.title = 'Electricity Bill Report'
+    worksheet.append([
+      'No.',
+      'Customer Name',
+      'kWh Used',
+      'Total Amount (VND)'
+    ])
 
-  new_headers = [
-    'No.',
-    'Customer Name',
-    'kWh Used',
-    'Total Amount (VND)'
-  ]
-
-  worksheet.append(new_headers)
-
-  electricity_data = lst_ppl
-
-  for i, row in enumerate(lst_ppl, start=1):
+  start_no = worksheet.max_row
+  for i, row in enumerate(lst_ppl, start=start_no):
     worksheet.append([i, *row])
 
   workbook.save(excel_file)
-  print(f'Excel file "{excel_file}" created successfully with electricity data.')
+  print(f'Saved {len(lst_ppl)} new row(s) to "{excel_file}".')
+
+  lst_ppl.clear()
 
 
 def main() -> None:
@@ -149,7 +157,7 @@ def main() -> None:
       name = name_input(msg_customer_name)
       kWh = kilowatt_input(msg_kWh)
       total = calc_total(kWh)
-      lst_ppl.append(People(name, kWh, total).__to_row__())
+      lst_ppl.append(People(name, kWh, total).get_row())
     elif choice == 2:
       save_to_excel()
     else:
