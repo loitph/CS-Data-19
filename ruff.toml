@@ -1,4 +1,4 @@
-line-length = 60
+line-length = 80
 indent-width = 2          # 2-space indent
 
 [format]

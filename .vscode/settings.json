@@ -3,9 +3,9 @@
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.wordWrap": "wordWrapColumn",
-  "editor.wordWrapColumn": 60,
+  "editor.wordWrapColumn": 80,
   "editor.rulers": [
-    60
+    80
   ],
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
