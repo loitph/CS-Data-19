@@ -37,7 +37,11 @@ for row_index, row in enumerate(worksheet.iter_rows(values_only=True), start=1):
   if shipping_type == super_fast:
     cost += 20_000
 
-  if depart == arrive:
+  north_side = ["Hà Nội", "Hải Phòng", "Nam Định"]
+  mid_side = ["Đà Nẵng", "Huế"]
+  south_side = ["TP.HCM", "Cần Thơ", "Vũng Tàu"]
+
+  if depart in north_side and arrive in north_side or depart in mid_side and arrive in mid_side or depart in south_side and arrive in south_side:
     cost = cost * Decimal("0.95")
 
   if cost > 500_000:
@@ -47,17 +51,20 @@ for row_index, row in enumerate(worksheet.iter_rows(values_only=True), start=1):
   else:
     type_of_cost = "Thấp"
 
-  cell_cost = worksheet.cell(row=row_index, column=8, value=(
+  cell_cost = worksheet.cell(row=row_index, column=9, value=(
     cost
   ))
   cell_cost._style = copy(worksheet.cell(row=row_index, column=1)._style)
   # format cell #,##0
   cell_cost.number_format = '#,##0'
 
-  cell_type_of_cost = worksheet.cell(row=row_index, column=9, value=(
+  # write title for this column
+  title_type_of_cost = worksheet.cell(row=1, column=10, value="Phân loại cước")
+  cell_type_of_cost = worksheet.cell(row=row_index, column=10, value=(
     type_of_cost
   ))
   cell_type_of_cost._style = copy(worksheet.cell(row=row_index, column=1)._style)
+  title_type_of_cost._style = copy(worksheet.cell(row=1, column=1)._style)
 
 # widen the profit type / profit columns
 worksheet.column_dimensions[get_column_letter(9)].width = 22
