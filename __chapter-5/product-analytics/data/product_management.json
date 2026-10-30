@@ -1,0 +1,8 @@
+[
+  {
+    "name": "bike",
+    "price_import": 100.0,
+    "price_export": 150.0,
+    "quantity": 10
+  }
+]

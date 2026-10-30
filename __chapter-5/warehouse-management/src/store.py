@@ -11,12 +11,18 @@ class ProductStore:
   def __new__(cls) -> "ProductStore":
     if cls._instance is None:
       cls._instance = super().__new__(cls)
-      cls._instance.products = []
-      cls._instance.data_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data"
-      )
-      cls._instance.load_from_store()
     return cls._instance
+
+  def __init__(self):
+    self._instance.products = []
+    self._instance.data_dir = os.path.join(
+      os.path.dirname(
+        os.path.dirname(
+          os.path.abspath(__file__)
+        )
+      ), "data"
+    )
+    self._instance.load_from_store()
 
   def load_from_store(self) -> None:
     path = os.path.join(self.data_dir, "store_management.json")

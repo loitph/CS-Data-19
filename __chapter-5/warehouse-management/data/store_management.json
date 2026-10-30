@@ -8,5 +8,10 @@
     "name": "apple",
     "price": 30000.0,
     "quantity": 12
+  },
+  {
+    "name": "mango",
+    "price": 11000.0,
+    "quantity": 30
   }
 ]
