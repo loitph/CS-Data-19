@@ -17,3 +17,13 @@ docker run --platform linux/amd64 \
   mcr.microsoft.com/mssql/server:2025-latest
 
 docker start -a loitph-mssql-2026
+
+# Install at specific project:
+## Generate the virtual environment:
+py -m venv .venv
+
+## Start the virtual environment:
+source .venv/bin/activate
+
+## Install packages for virtual env:
+pip install -r requirements.txt

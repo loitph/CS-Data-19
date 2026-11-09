@@ -14,5 +14,6 @@
       "source.fixAll": "explicit",
       "source.organizeImports": "explicit"
     }
-  }
+  },
+  "python.terminal.useEnvFile": true
 }
