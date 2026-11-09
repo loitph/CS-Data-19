@@ -4,6 +4,7 @@ from typing import Callable
 from src.management import add_product, list_products, choice_input
 from src.file_handler import store_as_json, store_as_excel
 from src.store import ProductStore
+from src.profit_analysis import profit_analysis
 
 menu_title = "\n--- Menu ---"
 menu_end = "--- #### ---\n"
@@ -15,6 +16,7 @@ goodbye = "Goodbye!"
 MENU: list[tuple[str, Callable[[], None]]] = [
   ("Add Product", add_product),
   ("List Products", list_products),
+  ("Profit Analysis", profit_analysis),
   ("Store as JSON", store_as_json),
   ("Store as Excel", store_as_excel),
 ]
