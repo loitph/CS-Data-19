@@ -1,0 +1,9 @@
+[tool.ruff.lint]
+ignore = ["E501"]
+
+
+[tool.ruff]
+indent-width = 2
+
+[tool.ruff.format]
+indent-style = "space"
